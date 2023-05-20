@@ -14,12 +14,16 @@ public class Burger {
 	private List<Extras> extras = new ArrayList<>();
 	
 	public Burger() {
-		this.price = Constants.DEFAULT_BURGER_PRICE;
-		this.name = Constants.DEFAULT_BURGER_NAME;
-		this.meat = Constants.DEFAULT_BURGER_MEAT;
-		this.breadRollType = Constants.DEFAULT_BURGER_BREAD_ROLL_TYPE;
+		this(Constants.DEFAULT_BURGER_PRICE, Constants.DEFAULT_BURGER_NAME, Constants.DEFAULT_BURGER_MEAT, Constants.DEFAULT_BURGER_BREAD_ROLL_TYPE);
 	}
-	
+
+	public Burger(double price, String name, String meat, String breadRollType) {
+		this.price = price;
+		this.name = name;
+		this.meat = meat;
+		this.breadRollType = breadRollType;
+	}
+
 	public void addToping(Topings t) {
 		if(topings.size() < Constants.DEFAULT_BURGER_MAX_TOPPINGS_NUM) {
 			topings.add(t);
@@ -38,6 +42,15 @@ public class Burger {
 		return topings.stream().mapToDouble(el -> el.price).reduce(0, (subtotal, next) -> subtotal + next);
 	}
 
+	
+	public void setTopings(List<Topings> topings) {
+		this.topings = topings;
+	}
+
+	public void setExtras(List<Extras> extras) {
+		this.extras = extras;
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("Burger [price=%.2f$, name=%s, meat=%s, breadRollType=%s, topings=%s, extras=%s]", price, name, meat,
