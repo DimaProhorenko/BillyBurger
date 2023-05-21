@@ -1,5 +1,7 @@
 package main;
 import burgers.*;
+import menu.Menu;
+import menu.MenuOptions;
 import topings.Topings;
 import java.util.Scanner;
 
@@ -21,9 +23,12 @@ public class Main {
 //		System.out.println(deluxe);
 		
 		Menu menu = new Menu(scanner);
-		menu.checkIfMenuOptionsContains("classic");
+		
 		MenuOptions burgerChoise = menu.pickBurger();
-		System.out.println(burgerChoise);
+		Burger burger = menu.createBurger(burgerChoise);
+		menu.addExtras(burger);
+		menu.addTopings(burger);
+		System.out.println(burger);
 	}
 	
 }

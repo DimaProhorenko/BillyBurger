@@ -38,8 +38,13 @@ public class Burger {
 		price += extra.getPrice();
 	}
 	
-	private double calcBurgerPrice() {
-		return topings.stream().mapToDouble(el -> el.price).reduce(0, (subtotal, next) -> subtotal + next);
+	public void addExtra(List<Extras> ex) {
+		extras.addAll(ex);
+		price += calcExtrasPrice(ex);
+	}
+	
+	private double calcExtrasPrice(List<Extras> extras) {
+		return extras.stream().mapToDouble(el -> el.getPrice()).reduce(0, (subtotal, next) -> subtotal + next);
 	}
 
 	
